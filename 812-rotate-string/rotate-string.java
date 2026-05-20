@@ -15,7 +15,7 @@ class Solution {
                 break;
             }
         }
-        return sb.toString().equals(goal);
+        return false;
         
     }
 }
