@@ -10,7 +10,7 @@ class Solution {
                     freq[sub.charAt(k)-'a']++;
                 }
                 int min_freq=Integer.MAX_VALUE;
-                int max_freq=0;
+                int max_freq=Integer.MIN_VALUE;
                 for(int k=0;k<26;k++){
                     if(freq[k]>0){
                     min_freq=Math.min(min_freq,freq[k]);
