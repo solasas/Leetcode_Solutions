@@ -13,7 +13,7 @@ class Solution {
 
             if(Character.isDigit(ch)){
 
-                num = num*10 + (ch-'0');
+                num =  num*10 +(ch-'0');
             }
 
             else if(ch=='['){
