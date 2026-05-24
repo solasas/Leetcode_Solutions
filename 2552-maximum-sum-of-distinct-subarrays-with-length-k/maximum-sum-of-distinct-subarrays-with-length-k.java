@@ -1,29 +1,25 @@
 class Solution {
     public long maximumSubarraySum(int[] nums, int k) {
-        int n = nums.length;
-        long maxSum = 0;
-        long winSum = 0;
-        HashMap<Integer, Integer> freq = new HashMap<>();
-
-        for (int i = 0; i < n; ++i) {
-            // Step-1: Include right element
-            freq.put(nums[i], freq.getOrDefault(nums[i], 0) + 1);
-            winSum += nums[i];
-
-            // Step-2: Exclude left element
-            if (i >= k) {
-                winSum -= nums[i - k];
-                freq.put(nums[i - k], freq.get(nums[i - k]) - 1);
-                if (freq.get(nums[i - k]) == 0) {
-                    freq.remove(nums[i - k]);
+        HashMap<Integer,Integer> map=new HashMap<>();
+        int n=nums.length;
+        long sum=0;
+        long maxsum=0;
+        int left=0;
+        for(int right=0;right<n;right++){
+            sum+=nums[right];
+            map.put(nums[right],map.getOrDefault(nums[right],0)+1);
+            if(right-left+1>k){
+                sum-=nums[left];
+                map.put(nums[left],map.get(nums[left])-1);
+                if(map.get(nums[left])==0){
+                    map.remove(nums[left]);
                 }
+                left++;
             }
-
-            // Step-3: Maximize maxSum
-            if (i >= k - 1 && freq.size() == k) {
-                maxSum = Math.max(maxSum, winSum);
+            if(right-left+1==k && map.size()==k){
+                maxsum=Math.max(maxsum,sum);
             }
         }
-        return maxSum;
+        return maxsum;
     }
 }
