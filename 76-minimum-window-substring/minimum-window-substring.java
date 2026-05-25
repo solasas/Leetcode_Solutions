@@ -1,50 +1,46 @@
 class Solution {
     public String minWindow(String s, String t) {
+        // Count characters in s
+    int[] mapS = new int[256];
 
-        if(s.length()<t.length())
-            return "";
+    // Count characters in t
+    int[] mapT = new int[256];
 
-        int[] count=new int[256];
+    for (char ch : t.toCharArray())
+      mapT[ch]++;
 
-        for(char c:t.toCharArray()){
-            count[c]++;
-        }
+    String result = "";
+    int right = 0, min = Integer.MAX_VALUE;
 
-        int left=0;
-        int matched=0;
+    // Two pointers of the sliding window: i(left), right
+    for (int i = 0; i < s.length(); i++) {
 
-        int minLen=Integer.MAX_VALUE;
-        int start=0;
+      while (right < s.length() && !isDesirable(mapS, mapT)) {
+        mapS[s.charAt(right)]++;
 
-        for(int right=0;right<s.length();right++){
+        // Extend the right pointer of the sliding window
+        right++;
+      }
 
-            char ch=s.charAt(right);
+      if (isDesirable(mapS, mapT) && min > right - i + 1) {
+        result = s.substring(i, right);
+        min = right - i + 1;
+      }
 
-            if(count[ch]>0)
-                matched++;
-
-            count[ch]--;
-
-            while(matched==t.length()){
-
-                if(right-left+1<minLen){
-                    minLen=right-left+1;
-                    start=left;
-                }
-
-                char leftChar=s.charAt(left);
-
-                count[leftChar]++;
-
-                if(count[leftChar]>0)
-                    matched--;
-
-                left++;
-            }
-        }
-
-        return minLen==Integer.MAX_VALUE
-                ? ""
-                : s.substring(start,start+minLen);
+      // Shrink the left pointer from i to i + 1
+      mapS[s.charAt(i)]--;
     }
-}
+
+    return result;
+  }
+
+  // Runtime = O(256) = O(1)
+  private boolean isDesirable(int[] mapS, int[] mapT) {
+    // s should cover all characters in t
+    for (int i = 0; i < mapT.length; i++) {
+      if (mapT[i] > mapS[i])
+        return false;
+    }
+    return true;
+  }
+    }
