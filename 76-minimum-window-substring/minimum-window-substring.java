@@ -4,7 +4,7 @@ class Solution {
         if(s.length()<t.length())
             return "";
 
-        int[] count=new int[128];
+        int[] count=new int[256];
 
         for(char c:t.toCharArray()){
             count[c]++;
