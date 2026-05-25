@@ -9,6 +9,7 @@ class Solution {
         }
         for(int i=0;i<s.length();i++){
             scount[s.charAt(i)-'a']++;
+            // When i == p.length() then the window size becomes p.length()+1:
             if(i>=p.length()){
                 scount[s.charAt(i-p.length())-'a']--;
             }
