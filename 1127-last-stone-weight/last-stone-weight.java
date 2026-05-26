@@ -8,7 +8,7 @@ class Solution {
             int s1=qu.poll();
             int s2=qu.poll();
             int diff=Math.abs(s1-s2);
-            if(diff>0){
+            if(s1!=s2){
             qu.add(diff);
             }
             
