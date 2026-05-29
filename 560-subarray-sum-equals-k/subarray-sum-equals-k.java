@@ -1,8 +1,8 @@
 class Solution {
     public int subarraySum(int[] nums, int k) {
 
-        Map<Integer, Integer> sumCountMap = new HashMap<>();
-        sumCountMap.put(0, 1);
+        Map<Integer, Integer> map = new HashMap<>();
+        map.put(0, 1);
 
         int count = 0;
         int prefixSum = 0;
@@ -11,13 +11,13 @@ class Solution {
 
             prefixSum += num;
 
-            if (sumCountMap.containsKey(prefixSum - k)) {
-                count += sumCountMap.get(prefixSum - k);
+            if (map.containsKey(prefixSum - k)) {
+                count += map.get(prefixSum - k);
             }
 
-            sumCountMap.put(
+            map.put(
                 prefixSum,
-                sumCountMap.getOrDefault(prefixSum, 0) + 1
+                map.getOrDefault(prefixSum, 0) + 1
             );
         }
 
