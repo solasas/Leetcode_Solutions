@@ -4,7 +4,7 @@ class Solution {
         Map<Integer, Integer> sumCountMap = new HashMap<>();
         sumCountMap.put(0, 1);
 
-        int result = 0;
+        int count = 0;
         int prefixSum = 0;
 
         for (int num : nums) {
@@ -12,7 +12,7 @@ class Solution {
             prefixSum += num;
 
             if (sumCountMap.containsKey(prefixSum - k)) {
-                result += sumCountMap.get(prefixSum - k);
+                count += sumCountMap.get(prefixSum - k);
             }
 
             sumCountMap.put(
@@ -21,6 +21,6 @@ class Solution {
             );
         }
 
-        return result;
+        return count;
     }
 }
