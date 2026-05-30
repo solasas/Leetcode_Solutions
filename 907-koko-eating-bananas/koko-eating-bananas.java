@@ -5,7 +5,7 @@ class Solution {
         int right=findMax(piles);
         while(left<=right){
             int mid=left+(right-left)/2;
-            long totalHours=findTotalHours(piles,mid);
+            int totalHours=findTotalHours(piles,mid);
             if(totalHours<=h){
                 right=mid-1;
             }
@@ -23,8 +23,8 @@ class Solution {
         }
         return max;
     }
-    private long findTotalHours(int[] arr,int mid){
-        long hours=0;
+    private int findTotalHours(int[] arr,int mid){
+        int hours=0;
         for(int num : arr){
             hours+=Math.ceil((double)num/mid);
         }
