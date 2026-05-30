@@ -13,6 +13,6 @@ class Solution {
                 left=mid+1;
             }
         }
-        return right; // at this point left=right
+        return left; // at this point left=right
     }
 }
