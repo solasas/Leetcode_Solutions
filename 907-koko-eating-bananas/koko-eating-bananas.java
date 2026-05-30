@@ -22,13 +22,13 @@ class Solution {
     }
 
     private int findMax(int[] piles) {
-        int maxi = Integer.MIN_VALUE;
+        int max = Integer.MIN_VALUE;
 
         for (int pile : piles) {
-            maxi = Math.max(maxi, pile);
+            max = Math.max(max, pile);
         }
 
-        return maxi;
+        return max;
     }
 
     private long calculateTotalHours(int[] piles, int hourly) {
@@ -36,7 +36,7 @@ class Solution {
         long totalHours = 0;
 
         for (int pile : piles) {
-            totalHours += (pile + hourly - 1) / hourly;
+            totalHours += (long) Math.ceil((double) pile / hourly);
         }
 
         return totalHours;
