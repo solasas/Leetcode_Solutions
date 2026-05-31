@@ -1,7 +1,6 @@
 class Solution {
 
-    public List<List<Integer>> fourSum(int[] nums,
-                                       int target) {
+    public List<List<Integer>> fourSum(int[] nums, int target) {
 
         Set<List<Integer>> result = new HashSet<>();
 
@@ -19,13 +18,7 @@ class Solution {
 
                     if(seen.contains(needed)){
 
-                        List<Integer> quad =
-                            Arrays.asList(
-                                nums[i],
-                                nums[j],
-                                nums[k],
-                                (int)needed
-                            );
+                        List<Integer> quad = Arrays.asList(nums[i], nums[j], nums[k],(int)needed );
 
                         Collections.sort(quad);
 
